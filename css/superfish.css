@@ -75,7 +75,8 @@ ul.sf-menu>li>a strong{
 ul.sf-menu>li:last-child>a strong{width: 100%;}
 ul.sf-menu>li.current , ul.sf-menu>li.sfHover , ul.sf-menu>li:hover {}
 ul.sf-menu>li.current>a, ul.sf-menu>li.sfHover>a, ul.sf-menu>li>a:hover{
-	color:#fff; 
+	color:#fff;
+	background-color: #513E46;
 	/*font-weight: bold;*/
 }
 ul.sf-menu>li.current>a strong, ul.sf-menu>li.sfHover>a strong, ul.sf-menu>li>a:hover strong{height: 100%;}
