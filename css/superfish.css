@@ -126,10 +126,10 @@ ul.sf-menu>li.current>a strong, ul.sf-menu>li.sfHover>a strong, ul.sf-menu>li>a:
 
 /*submenu2*/
 .sf-menu li li ul {
-	 left: 84px !important;
+	 left: 120px !important;
 	 top:-13px !important;
 	 display:block;
-	 width:111px;
+	 width:180px;
 	z-index:99;
 	background: url(../images/submenu2_bg.png) #2b2b2b;
 	padding:13px 17px 13px;
