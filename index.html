@@ -6,7 +6,7 @@
 		<meta name = "format-detection" content = "telephone=no" />
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="css/style.css">
+
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery-migrate-1.1.1.js"></script>
 		<script src="js/jquery.easing.1.3.js"></script>
@@ -17,6 +17,7 @@
 		<script src="js/jquery.mobilemenu.js"></script>
 		<script src="js/touchTouch.jquery.js"></script>
 		<script src="js/jquery.tools.min.js"></script>
+		<script src="js/chosen.jquery.min.js"></script>
 
 		<!-- font-awesome font -->
 		<link rel="stylesheet" href="font/font-awesome.css" type="text/css" media="screen">
@@ -38,6 +39,10 @@
 			<script src="js/html5shiv.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
 	 <![endif]-->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="css/chosen.css">
 		</head>
 <body>
 <!--button back top-->
@@ -69,6 +74,7 @@
 											 <ul class='submenu2'>
 													<li><a href="tel:5539778549">5539778549</a></li>
 													<li class="last"><a href="mailto:ventas@dratl.com.mx">ventas@dratl.com.mx</a></li>
+													<li><a href="#" id="ubucacion">Ubicación</a></li>
 											 </ul>
 										</li>
 									</ul>
@@ -98,11 +104,25 @@
 
 		<div class="container_16">
 			<div class="grid_16">
-				<p class="txt1" style='margin-left: -35px'>Departamento <br> Disponibles </p>
-				<form id="search2" action="search.php" method="GET" accept-charset="utf-8">
-					<input type="text" name="s" value="Número" onFocus="myFocus(this);" onBlur="myBlur(this);"/>
-					<a onClick="document.getElementById('search2').submit()" class="more_btn2">Buscar</a>
-				</form>
+				<p class="txt1" style='margin-left: -35px'>Departamentos <br> Disponibles </p>
+				
+					<select id="deptos" name="deptos">
+						<option value="101">Departamento[101] 2 Recamaras 2 Piso Precio $3,472,000.00 MXN</option>
+						<option value="104">Departamento[104] 2 Recamaras 2 Piso Precio $2,989,255.00 MXN</option>
+						<option value="204">Departamento[204] 2 Recamaras 2 Piso Precio $2,838,000.00 MXN</option>
+						<option value="205">Departamento[205] 2 Recamaras 2 Piso Precio $2,838,000.00 MXN</option>
+						<option value="208">Departamento[208] 3 Recamaras 3 Piso Precio $3,347,000.00 MXN</option>
+						<option value="302">Departamento[302] 2 Recamaras 2 Piso Precio $3,571,900.00 MXN</option>
+						<option value="303">Departamento[303] 2 Recamaras 2 Piso Precio $3,670,243.00 MXN</option>
+						<option value="303">Departamento[304] 2 Recamaras 2 Piso Precio $3,674,233.00 MXN</option>
+						<option value="303">Departamento[305] 2 Recamaras 2 Piso Precio $3,674,149.00 MXN</option>
+						<option value="306">Departamento[306] 2 Recamaras 2 Piso Precio $3,677,146.00 MXN</option>
+						<option value="309">Departamento[309] 3 Recamaras 3 Piso Precio $4,279,453.00 MXN</option>
+					
+					</select>
+					<!--a onClick="document.getElementById('search2').submit()" class="more_btn2">Buscar</a-->
+				
+				
 			</div>
 		</div>
 
@@ -116,19 +136,19 @@
 					<div class="grid_4 alpha">
 						<a href="#" class="link_img">
 							<img src="images/page1_pic1.jpg" alt="" class="img1">
-							<span class="img_hover_txt">$2,800,000</span>
+							<span class="img_hover_txt">Desde $2,838,000.00</span>
 						</a>
 						<p class="lh18">Departamentos Tipo A </p>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle1" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
 					</div>
 
 					<div class="grid_4">
 						<a href="#" class="link_img">
 							<img src="images/page1_pic2.jpg" alt="" class="img1">
-							<span class="img_hover_txt">$3,300,000</span>
+							<span class="img_hover_txt">Desde $3,347,000.00</span>
 						</a>
 						<p class="lh18">Departamentos Tipo B </p>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle2" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
 					</div>
 
 					<div class="grid_4">
@@ -137,7 +157,8 @@
 							<span class="img_hover_txt">$0</span>
 						</a>
 						<p class="lh18">Terraza A</p>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle3" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+
 					</div>
 
 					<div class="grid_4 omega">
@@ -146,7 +167,7 @@
 							<span class="img_hover_txt">$0</span>
 						</a>
 						<p class="lh18">Terraza B</p>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle4" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
 					</div>
 
 				</div>
@@ -193,15 +214,15 @@
 					<h3>Tipo Departamentos</h3>
 
 					<div class="grid_3 alpha">
-						<a href="#" class="link_letter"><span class="letter_section">A</span></a>
+						<!--a href="#" class="link_letter"--><span class="letter_section">A</span><!--/a-->
 						<h4>*Recámaras (2) <br>*Baños (2) <br>*Estacionamiento (1)<br>*Tamaño 66.5 m2 + terraza</h4>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle5" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
 					</div>
 
 					<div class="grid_4 omega">
-						<a href="#" class="link_letter"><span class="letter_section">B</span></a>
+						<!--a href="#" class="link_letter"--><span class="letter_section">B</span><!--/a-->
 						<h4>*Recámaras (3) <br>*Baños (2) <br>*Estacionamiento (1)<br>*Tamaño 80 m2 + terraza</h4>
-						<a href="#" class="more_btn">Detalle</a>
+						<a id="detalle6" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
 					</div>
 
 				</div>
@@ -224,15 +245,28 @@
 					<p><span class="color1 bold">Brad Nelson</span>: excelente atención y servicio.</p>
 					<a href="#" class="more_btn v2">Más testimonios</a>
 				</div>
-
-
-
-
-
-
 					 </div>
 				</div>
-
+              <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog" >
+                    <div class="modal-dialog modal-dialog-centered" style="width: 60%">
+                    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #B19032;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color:white;">Vista Previa</h4>
+                        </div>
+                        <div class="modal-body"  align="center">
+                            <img id="idImagenModal" src="images/terraza1.png">
+                        </div>
+                        <div class="modal-footer">
+                        <!--button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button -->
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
 	 
 	 <!--=======footer=================================-->
 			<footer>
@@ -240,7 +274,7 @@
 				<div class="footer_priv">
 					<div class="container_16">
 
-						<div class="grid_6 prefix_5 alpha txt_cntr">
+						<div class="grid_11 prefix_5 alpha txt_cntr">
 							<h1><a href="index.html"><img src="images/logo_footer.png" alt="dratl"></a></h1>
 							<p class="txt_priv"><span class="color2">DR.ATL</span> &copy; <span id="copyright-year"></span> <span class="color2">&bull;</span> <a href="aviso.html" class="link1">Aviso de Privacidad</a><br><!--{%FOOTER_LINK} --></p>
 						</div>
@@ -260,6 +294,7 @@
 														<i class="icon-facebook"></i>
 													</div>
 											</a>
+
 									</li>
 									<!--li class="last">
 											<a href="#" class="animate">
@@ -300,6 +335,8 @@
 				caption: false
 			});
 
+		$("#deptos").chosen({width: "95%",placeholder_text_single:"Seleccione departamento"});		
+
 	 });
 
 	 $(document).ready(function(){
@@ -319,6 +356,64 @@
 							 element.value = element.defaultValue;
 					 }
 				}
+ $("#detalle1").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza1.png");
+
+ });	
+ $("#detalle2").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza3.png");
+
+ });
+ $("#detalle3").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza2.png");
+
+ });	
+ $("#detalle4").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza4.png");
+
+ });	
+ $("#detalle5").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza2.png");
+
+ });		
+ $("#detalle6").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/terraza3.png");
+
+ });
+
+ $("#ubucacion").click(function(){
+	$('#myModal').modal('show');
+	$('#idImagenModal').attr("src","images/direccion.png");
+ });
+
+$("#deptos").change(function(){
+
+var depto=$(this).val();
+var url;
+/*switch(depto){
+ case 101:  url = 'Departamento '+depto+'.pdf'; break;
+ case 104:  url = 'pdf/x.pdf'; break;
+ case 204:  url = 'pdf/x.pdf'; break;
+ case 205:  url = 'pdf/x.pdf'; break;
+ case 208:  url = 'pdf/x.pdf'; break;
+ case 302:  url = 'pdf/x.pdf'; break;
+ case 303:  url = 'pdf/x.pdf'; break;
+ case 304:  url = 'pdf/x.pdf'; break;
+ case 305:  url = 'pdf/x.pdf'; break;
+ case 306:  url = 'pdf/x.pdf'; break;
+ case 309:  url = 'pdf/x.pdf'; break;
+
+}*/
+url = 'pdf/Departamento '+depto+'.pdf';
+window.open(url , '_blank');
+
+});
 
 </script>
 <script type="text/javascript">
