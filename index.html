@@ -59,15 +59,34 @@
 						
 						<nav>
 							<ul class="sf-menu header_menu">
-								<li class="current"><a href="index.html"><span></span>Inicio<strong></strong></a>
-										<ul class='submenu'>
-											<li><a href="#">Ofertas</a></li>
-										</ul>
-								 </li>
+								<li class="current"><a href="index.html"><span></span>Inicio<strong></strong></a></li>
 								 
-								 <li><a href="#">Departamentos<strong></strong></a></li>
+								 <li><a href="#departamentos">Departamentos<strong></strong></a>
+									<ul class='submenu'>
+											<li class='sub-menu last'><a href="#">Tipo A</a>
+												 <ul class='submenu2'>
+														<li><a href="pdf/Departamento 101.pdf" target="_blank">[101] 1 Piso </a></li>
+														<li><a href="pdf/Departamento 104.pdf" target="_blank">[104] 1 Piso </a></li>
+														<li><a href="pdf/Departamento 204.pdf" target="_blank">[204] 2 Piso </a></li>
+														<li><a href="pdf/Departamento 205.pdf" target="_blank">[205] 2 Piso </a></li>
+														<li><a href="pdf/Departamento 302.pdf" target="_blank">[302] 3 Piso </a></li>
+														<li><a href="pdf/Departamento 303.pdf" target="_blank">[303] 3 Piso </a></li>
+														<li><a href="pdf/Departamento 304.pdf" target="_blank">[304] 3 Piso </a></li>
+														<li><a href="pdf/Departamento 305.pdf" target="_blank">[305] 3 Piso </a></li>
+														<li><a href="pdf/Departamento 306.pdf" target="_blank">[306] 3 Piso </a></li>
+														
+														
+												 </ul>
+											</li>
+											<li class='sub-menu last'><a href="#">Tipo B</a>
+												<ul class='submenu2'>
+														<li><a href="pdf/Departamento 309.pdf" target="_blank">[309] 3 Piso </a></li>
+												</ul>
+										   </li>
+										</ul>
+								</li>
 								 <li><a href="#">Servicios<strong></strong></a></li>
-								 <li><a href="#">Ligas<strong></strong></a></li>
+								 <li><a href="index.html">Promociones<strong></strong></a></li>
 								 <li><a href="mailto:ventas@dratl.com.mx">Contactanos<strong></strong></a>
 									<ul class='submenu'>
 										<li class='sub-menu last'><a href="#">Informes</a>
@@ -88,7 +107,7 @@
 
 			<div class="slider_wrapper">
 					<div class="" id="camera_wrap">
-							<div data-src="images/buen-fin.jpeg"></div>
+							<div id="buen-fin" data-src="images/buen-fin.jpeg"></div>
 							<div data-src="images/slide0.png"></div>
 							<!--div data-src="images/slide1.jpg"></div>
 							<div data-src="images/slide2.jpg"></div>
@@ -103,33 +122,31 @@
 
 <!--=======content================================-->
 
-		<div class="container_16">
+		<!--div class="container_16">
 			<div class="grid_16">
-				<p class="txt1" style='margin-left: -35px'>Departamentos <br> Disponibles </p>
+				<p id="departamentos" class="txt1" style='margin-left: -35px'>Departamentos <br> Disponibles </p>
 				
 					<select id="deptos" name="deptos">
-						<option value="101">Departamento[101] 2 Recamaras 2 Piso Precio $3,472,000.00 MXN</option>
-						<option value="104">Departamento[104] 2 Recamaras 2 Piso Precio $2,989,255.00 MXN</option>
+						<option value="101">Departamento[101] 2 Recamaras 1 Piso Precio $3,472,000.00 MXN</option>
+						<option value="104">Departamento[104] 2 Recamaras 1 Piso Precio $2,989,255.00 MXN</option>
 						<option value="204">Departamento[204] 2 Recamaras 2 Piso Precio $2,838,000.00 MXN</option>
 						<option value="205">Departamento[205] 2 Recamaras 2 Piso Precio $2,838,000.00 MXN</option>
-						<option value="208">Departamento[208] 3 Recamaras 3 Piso Precio $3,347,000.00 MXN</option>
-						<option value="302">Departamento[302] 2 Recamaras 2 Piso Precio $3,571,900.00 MXN</option>
-						<option value="303">Departamento[303] 2 Recamaras 2 Piso Precio $3,670,243.00 MXN</option>
-						<option value="303">Departamento[304] 2 Recamaras 2 Piso Precio $3,674,233.00 MXN</option>
-						<option value="303">Departamento[305] 2 Recamaras 2 Piso Precio $3,674,149.00 MXN</option>
-						<option value="306">Departamento[306] 2 Recamaras 2 Piso Precio $3,677,146.00 MXN</option>
+						<option value="302">Departamento[302] 2 Recamaras 3 Piso Precio $3,571,900.00 MXN</option>
+						<option value="303">Departamento[303] 2 Recamaras 3 Piso Precio $3,670,243.00 MXN</option>
+						<option value="303">Departamento[304] 2 Recamaras 3 Piso Precio $3,674,233.00 MXN</option>
+						<option value="303">Departamento[305] 2 Recamaras 3 Piso Precio $3,674,149.00 MXN</option>
+						<option value="306">Departamento[306] 2 Recamaras 3 Piso Precio $3,677,146.00 MXN</option>
 						<option value="309">Departamento[309] 3 Recamaras 3 Piso Precio $4,279,453.00 MXN</option>
 					
 					</select>
-					<!--a onClick="document.getElementById('search2').submit()" class="more_btn2">Buscar</a-->
-				
+							
 				
 			</div>
-		</div>
+		</div-->
 
 		<div class="box-1">
 			<div class="h2_box">
-				<h2>Más Popular</h2>
+				<h2>Presentación</h2>
 			</div>
 
 			<div class="container_16">
@@ -140,7 +157,7 @@
 							<span class="img_hover_txt">Desde $2,838,000.00</span>
 						</a>
 						<p class="lh18">Departamentos Tipo A </p>
-						<a id="detalle1" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<a id="detalle1" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Plano</a>
 					</div>
 
 					<div class="grid_4">
@@ -149,26 +166,26 @@
 							<span class="img_hover_txt">Desde $3,347,000.00</span>
 						</a>
 						<p class="lh18">Departamentos Tipo B </p>
-						<a id="detalle2" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<a id="detalle2" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Plano</a>
 					</div>
 
 					<div class="grid_4">
-						<a href="#" class="link_img">
+						<a href="#" class="">
 							<img src="images/page1_pic3.jpg" alt="" class="img1">
 							<span class="img_hover_txt">$0</span>
 						</a>
-						<p class="lh18">Terraza A</p>
-						<a id="detalle3" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<p class="lh18">Root Garden Privado/Común</p>
+						<a id="detalle3" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Plano</a>
 
 					</div>
 
 					<div class="grid_4 omega">
-						<a href="#" class="link_img">
+						<a href="#" class="">
 							<img src="images/page1_pic4.jpg" alt="" class="img1">
 							<span class="img_hover_txt">$0</span>
 						</a>
-						<p class="lh18">Terraza B</p>
-						<a id="detalle4" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<p class="lh18">Fecha Entrega</p>
+						<a id="detalle4" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Ver</a>
 					</div>
 
 				</div>
@@ -187,7 +204,7 @@
 							<h3 class="v2">Construcción</h3>
 						</div>
 						<p>Cada espacio de los 26 departamentos está diseñado para ofrecer comodidad, funcionalidad, seguridad y amplitud. Desde 66.5 m2 a 120 m2 más terrazas.</p>
-					    <a href="#" class="more_btn3">Leer mas</a>
+					    <!--a href="#" class="more_btn3">Leer mas</a-->
 					</div>
 
 					<div class="grid_8 prefix_1 omega">
@@ -196,7 +213,7 @@
 							<h3 class="v2">Calidad de vida</h3>
 						</div>
 						<p>Las terrazas del complejo, permiten iluminacion con luz natural y vistas al exterior para disfrutar la atmósfera cultural de la colonia.</p>
-						<a href="#" class="more_btn3">Leer mas</a>
+						<!--a href="#" class="more_btn3">Leer mas</a-->
 					</div>
 
 
@@ -217,19 +234,19 @@
 					<div class="grid_3 alpha">
 						<!--a href="#" class="link_letter"--><span class="letter_section">A</span><!--/a-->
 						<h4>*Recámaras (2) <br>*Baños (2) <br>*Estacionamiento (1)<br>*Tamaño 66.5 m2 + terraza</h4>
-						<a id="detalle5" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<a id="detalle5" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Plano</a>
 					</div>
 
 					<div class="grid_4 omega">
 						<!--a href="#" class="link_letter"--><span class="letter_section">B</span><!--/a-->
 						<h4>*Recámaras (3) <br>*Baños (2) <br>*Estacionamiento (1)<br>*Tamaño 80 m2 + terraza</h4>
-						<a id="detalle6" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Detalle</a>
+						<a id="detalle6" href="#" class="more_btn" data-toggle="modal"  style="text-decoration:none;color: white;">Plano</a>
 					</div>
 
 				</div>
 
 				<div class="grid_8">
-					<h3>Información útil</h3>
+					<h3>Ubicación Privilegiada</h3>
 					<ul class="listWithMarker">
 						<li><a href="#">A sólo una cuadra del kiosko morisco</a></li>
 						<li><a href="#">En una zona céntrica de la ciudad</a></li>
@@ -369,12 +386,12 @@
  });
  $("#detalle3").click(function(){
 	$('#myModal').modal('show');
-	$('#idImagenModal').attr("src","images/terraza2.png");
+	$('#idImagenModal').attr("src","images/detalle3.jpeg");
 
  });	
  $("#detalle4").click(function(){
 	$('#myModal').modal('show');
-	$('#idImagenModal').attr("src","images/terraza4.png");
+	$('#idImagenModal').attr("src","images/entrega.jpeg");
 
  });	
  $("#detalle5").click(function(){
@@ -384,7 +401,7 @@
  });		
  $("#detalle6").click(function(){
 	$('#myModal').modal('show');
-	$('#idImagenModal').attr("src","images/terraza3.png");
+	$('#idImagenModal').attr("src","images/detalle6.jpeg");
 
  });
 
