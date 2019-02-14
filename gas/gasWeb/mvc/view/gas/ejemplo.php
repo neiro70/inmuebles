@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   header('Content-Type: text/html; charset=UTF-8');
   include("../../../mvc/util/MysqlDAO.php");
 
-    $input = $_POST;
+    //$input = $_POST;
     /*$cdireccion=trim($_POST['cdireccion']);
     $cnombre=trim($_POST['cnombre']);
     $ctelefono=trim($_POST['ctelefono']);
