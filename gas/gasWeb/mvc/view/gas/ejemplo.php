@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
       error_log("El cliente existe", 0);
       while($row = $result->fetch_assoc()) {
             $numCliente=$row["cliente"];  
-            $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '1', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
+            $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
             if ($conn->query($sql) === TRUE) {
               $input['exito'] = $conn->insert_id;
             }else{
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
       $sql="INSERT INTO t03cliente (nombre, apaterno, amaterno, telefono, direccion, rfc) VALUES ('jorge', 'martinez', 'alfonso', '5554146857', 'av aquiles', '{$crfc}')";
       if ($conn->query($sql) === TRUE) {
           $numCliente= $conn->insert_id; 
-          $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '1', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
+          $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
           if ($conn->query($sql) === TRUE) {
             $input['exito'] = $conn->insert_id;
           }else{
