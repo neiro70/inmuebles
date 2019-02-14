@@ -1,6 +1,6 @@
 <?php
 // Crear un nuevo post
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
   header('Content-Type: text/html; charset=UTF-8');
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     $cpago=trim($_POST['cpago']);
     $cmonto=trim($_POST['cmonto']);
     $cfecha=trim($_POST['cfecha']);*/
-    $crfc=trim($_GET['crfc']);
+    $crfc=trim($_POST['crfc']);
     //$cobeservaciones=trim($_POST['cobeservaciones']);
     $d1 = date('Y-m-d',(strtotime('2018-01-01')));
 
