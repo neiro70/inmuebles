@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   include("../../../mvc/util/MysqlDAO.php");
 
     //$input = $_POST;
-    /*
+    
    
    
     $cimporte=trim($_POST['cimporte']);
@@ -15,14 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $cpesos=trim($_POST['cpesos']);
     $cpago=trim($_POST['cpago']);
     $cmonto=trim($_POST['cmonto']);
-    $cfecha=trim($_POST['cfecha']);*/
+    //$cfecha=trim($_POST['cfecha']);
     $crfc=trim($_POST['crfc']);
     $cnombre=trim($_POST['cnombre']);
     $capaterno=trim($_POST['capaterno']);
     $camaterno=trim($_POST['camaterno']);
     $ctelefono=trim($_POST['ctelefono']);
     $cdireccion=trim($_POST['cdireccion']);
-    //$cobeservaciones=trim($_POST['cobeservaciones']);
+    $cobeservaciones=trim($_POST['cobeservaciones']);
     $d1 = date('Y-m-d',(strtotime('2018-01-01')));
 
     $db = new MySQL();   
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       error_log("El cliente existe", 0);
       while($row = $result->fetch_assoc()) {
             $numCliente=$row["cliente"];  
-            $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
+            $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '{$cpago}', '{$cimporte}', '{$clitros}', '{$cmonto}', CURRENT_TIMESTAMP, '{$cobeservaciones}', '{$d1}')";
             if ($conn->query($sql) === TRUE) {
               $input['exito'] = $conn->insert_id;
             }else{
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $sql="INSERT INTO t03cliente (nombre, apaterno, amaterno, telefono, direccion, rfc) VALUES ('{$cnombre}', '{$capaterno}', '{$camaterno}', '{$ctelefono}', '{$cdireccion}', '{$crfc}')";
       if ($conn->query($sql) === TRUE) {
           $numCliente= $conn->insert_id; 
-          $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
+          $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '{$cpago}', '{$cimporte}', '{$clitros}', '{$cmonto}', CURRENT_TIMESTAMP, '{$cobeservaciones}', '{$d1}')";
           if ($conn->query($sql) === TRUE) {
             $input['exito'] = $conn->insert_id;
           }else{
