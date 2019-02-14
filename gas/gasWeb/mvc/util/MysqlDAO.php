@@ -9,7 +9,7 @@ class MySQL{
 			//$schema="xtc";
 			//$schema="gasweb";
 			// Create connection
-			$this->conexion = new mysqli("localhost", "dratlcom_user", "123456789", "dratlcom_gasweb");
+			$this->conexion = new mysqli("162.241.2.161", "dratlcom_user", "123456789", "dratlcom_gasweb");
 			//$this->conexion = new mysqli("localhost", "root", "admin", "gasweb");
 			//$this->conexion = new mysqli("localhost", "id7242210_root", "admin", "id7242210_gasweb");
 			//mysql_query("SET NAMES 'utf8'");
