@@ -14,7 +14,13 @@
 	    session_start();
 	  
 	}
-
+	$context= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+	$var =explode("/",$context);
+	if (strpos($context, "localhost") !== false) {
+		$context="http://" .$var[0]."/".$var[1];
+	}else{
+		$context="http://" .$var[0];
+	}
 
 	include("mvc/util/MysqlDAO.php");
 
@@ -81,7 +87,7 @@
 			               				
 
 			               				
-			               				header("location:mvc/view/producto/viewBuscar.php");
+			               				header("location:{$context}/gas/gasWeb/mvc/view/producto/viewBuscar.php");
 			               			}else{
 			               				$msg = '&iexcl;Datos incorrectos!';
 			               			
