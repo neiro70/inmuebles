@@ -27,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     $conn=$db->getConexion();
     
     $result = $conn->query($sql);
-    error_log("Genera consulta", 0);
+   
     if ($result->num_rows > 0) {//el cliente existe
+      error_log("El cliente existe", 0);
       while($row = $result->fetch_assoc()) {
             $numCliente=$row["cliente"];  
             $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '1', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
