@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     $conn=$db->getConexion();
     
     $result = $conn->query($sql);
-    
+    error_log("Genera consulta", 0);
     if ($result->num_rows > 0) {//el cliente existe
       while($row = $result->fetch_assoc()) {
             $numCliente=$row["cliente"];  
