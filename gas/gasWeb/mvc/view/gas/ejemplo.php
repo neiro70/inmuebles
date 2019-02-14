@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   include("../../../mvc/util/MysqlDAO.php");
 
     //$input = $_POST;
-    /*$cdireccion=trim($_POST['cdireccion']);
-    $cnombre=trim($_POST['cnombre']);
-    $ctelefono=trim($_POST['ctelefono']);
+    /*
+   
+   
     $cimporte=trim($_POST['cimporte']);
     $clitros=trim($_POST['clitros']);
     $cpesos=trim($_POST['cpesos']);
@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $cmonto=trim($_POST['cmonto']);
     $cfecha=trim($_POST['cfecha']);*/
     $crfc=trim($_POST['crfc']);
+    $cnombre=trim($_POST['cnombre']);
+    $capaterno=trim($_POST['capaterno']);
+    $camaterno=trim($_POST['camaterno']);
+    $ctelefono=trim($_POST['ctelefono']);
+    $cdireccion=trim($_POST['cdireccion']);
     //$cobeservaciones=trim($_POST['cobeservaciones']);
     $d1 = date('Y-m-d',(strtotime('2018-01-01')));
 
@@ -40,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             }
       }
     }else if ($result->num_rows == 0) {//si el cliente no existe lo crea
-      $sql="INSERT INTO t03cliente (nombre, apaterno, amaterno, telefono, direccion, rfc) VALUES ('jorge', 'martinez', 'alfonso', '5554146857', 'av aquiles', '{$crfc}')";
+      $sql="INSERT INTO t03cliente (nombre, apaterno, amaterno, telefono, direccion, rfc) VALUES ('{$cnombre}', '{$capaterno}', '{$camaterno}', '{$ctelefono}', '{$cdireccion}', '{$crfc}')";
       if ($conn->query($sql) === TRUE) {
           $numCliente= $conn->insert_id; 
           $sql="INSERT INTO t02suministro (idcliente, idusuario, idtipopago, importe, litros, monto, fecha, comentarios, psuminstro) VALUES ('{$numCliente}', '2', '1', '30000', '10', '40000', CURRENT_TIMESTAMP, 'comentrio', '{$d1}')";
