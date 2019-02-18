@@ -1,8 +1,9 @@
 <?php
+
 // Crear un nuevo post
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-
+  header('Access-Control-Allow-Origin: *');
   header('Content-Type: text/html; charset=UTF-8');
   include("../../../mvc/util/MysqlDAO.php");
 
