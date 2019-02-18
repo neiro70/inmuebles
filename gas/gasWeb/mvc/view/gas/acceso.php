@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   include("../../../mvc/util/MysqlDAO.php");
 
     //$input = $_POST;
-    $usuario=trim($_POST['usuario']);
-    $password=trim($_POST['password']);
+    $usuario=trim($_GET['usuario']);
+    $password=trim($_GET['password']);
 
     $db = new MySQL();   
   
