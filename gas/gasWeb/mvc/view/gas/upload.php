@@ -3,6 +3,7 @@
     $server =$_SERVER["HTTP_HOST"];
 	$contexto = "http://" . $server ."/inmuebles/gas/gasWeb/mvc/view/gas/";
 
+    error_log("contexto:{$contexto}", 0);
  if($_FILES['file']['name'] != ''){
     $test = explode('.', $_FILES['file']['name']);
     $extension = end($test);    
