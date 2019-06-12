@@ -1,4 +1,5 @@
 <?php
+
  header("Access-Control-Allow-Origin: *");
     $server =$_SERVER["HTTP_HOST"];
 	$contexto = "http://" . $server ."/inmuebles/gas/gasWeb/mvc/view/gas/";
@@ -12,7 +13,7 @@
     $ABS_PATH='/home1/dratlcom/public_html/inmuebles/gas/gasWeb/mvc/view/gas/';
     $location = $ABS_PATH.$name;
     move_uploaded_file($_FILES['file']['tmp_name'], $location);
-    chmod( $location, 0777);
+    chmod( $location, 0755);
     
     $imagen=$contexto.$name;
 
