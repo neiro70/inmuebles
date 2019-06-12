@@ -12,7 +12,7 @@
     $ABS_PATH='/home1/dratlcom/public_html/inmuebles/gas/gasWeb/mvc/view/gas/';
     $location = $ABS_PATH.$name;
     move_uploaded_file($_FILES['file']['tmp_name'], $location);
-    chmod( $location, 0666);
+    chmod( $location, 0777);
     
     $imagen=$contexto.$name;
 
