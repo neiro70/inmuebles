@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/gas-rojo.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <!--link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"-->
+  <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <style type="text/css">
+body {
+   /* background: url(imgage.gif);*/
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:100% 100%;
+}
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
+	</style>
+</head>
+
+<body>
+
+  <div data-role="page" id="pageone">
+    <div data-role="header">
+      
+      <h1>Bienvenido</h1>
+
+    </div>
+
+    <div data-role="content" class="ui-content">
+
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><a href="javascript:window.location.href = 'agendar.html'" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-calendar">Agendar</a></div>
+			<div class="ui-block-b"><div class="button-wrap"><a href="javascript:window.location.href = 'insumo.html'" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-edit">Registrar</a></div></div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><a href="javascript:window.location.href = 'checklist.html'" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-bars">CheckList</a></div>
+			<div class="ui-block-b"><div class="button-wrap"><a href="javascript:window.location.href = 'reporte.html'" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-star">Reportes</a></div></div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-user">Usuarios</a></div>
+			<div class="ui-block-b"><div class="button-wrap"><a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-icon-left ui-icon-gear">Configuración</a></div></div>
+		</div>
+	</div>
+		
+    <div data-role="footer" data-role="fixed">
+      <h1>OperaGAS</h1>
+    </div>
+  </div>
+</body>
+
+</html>

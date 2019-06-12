@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 // Crear un nuevo post
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {

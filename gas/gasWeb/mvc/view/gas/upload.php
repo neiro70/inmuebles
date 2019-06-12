@@ -1,6 +1,6 @@
 <?php
 
- header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Origin: *");
     $server =$_SERVER["HTTP_HOST"];
 	$contexto = "http://" . $server ."/inmuebles/gas/gasWeb/mvc/view/gas/uploads/";
 

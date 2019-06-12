@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/gas-rojo.min.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+  <div data-role="page" id="pageone">
+    <div data-role="panel" id="mypanel">
+
+      <!-- panel content goes here -->
+
+
+      <ul data-role="listview" data-inset="false">
+        <li data-icon="edit"><a id="linkregistrar" href="javascript:window.location.href = 'insumo.html'">Registrar</a>
+          </li>
+        <li data-icon="calendar"><a id="linkAgendar" href="javascript:window.location.href = 'agendar.html'">Agendar</a>
+        </li>
+        <li data-icon="star"><a id="linkReporte" href="javascript:window.location.href = 'reporte.html'">Reportes</a>
+        </li>
+        <li data-icon="user"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Cliente</a>
+        </li>
+        <li data-icon="grid"><a id="linkDasboard" href="javascript:window.location.href = 'dashboard.html'">Dasboard</a></li>
+        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Cerrar</a></li>
+      </ul>
+
+
+    </div><!-- /panel -->
+
+
+    <div data-role="header">
+      <a href="#mypanel" id="cambiaVentana"
+        class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
+      <h1>Checklist</h1>
+
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+      <form id="forma" >
+
+        <label for="clitrossalida">Cantidad de Litros Salida:</label>
+        <input type="range" name="clitrossalida" id="clitrossalida" value="0" min="0" max="100" data-highlight="true">
+        <label for="clitrosregreso">Cantidad de Litros Regreso:</label>
+        <input type="range" name="clitrosregreso" id="clitrosregreso" value="0" min="0" max="100" data-highlight="true">
+        <label for="cnombre">Foto Inicial:</label>
+        <input type="file"  name="capaterno" id="capaterno" >
+        <input type="image"  name="cimage1" id="cimage1" src="img/image-not-found.png" width="100%">
+        <label for="cnombre">Foto Final:</label>
+        <input type="file"  name="camaterno" id="camaterno" value="">
+        <input type="image"  name="cimage2" id="cimage2" src="img/image-not-found.png" width="100%">
+        <label for="cnaceite">Nivel de Aceite %</label>
+        <input type="range" name="cnaceite" id="cnaceite" value="0" min="0" max="100" data-highlight="true">
+        <label for="canticongelate">Nivel de Anticongelante %</label>
+        <input type="range" name="canticongelate" id="canticongelate" value="0" min="0" max="100" data-highlight="true">
+        <label for="cllantas">llantas:</label>
+        <input type="range" name="cllantas" id="cllantas" value="0" min="0" max="10" data-highlight="true">
+
+        <label for="clitros">Limpieza</label>
+        <input type="range" name="climpieza" id="climpieza" value="0" min="0" max="10" data-highlight="true">
+        <label for="cobeservaciones">Reporte:</label>
+        <textarea name="cobeservaciones" id="cobeservaciones">
+        </textarea>
+      </form>
+      <br>
+      <a href="#" onclick="guardar()" 
+              class="ui-btn  ui-shadow ui-corner-all" id="guardar"
+              name="guardar">
+              <img src="img/save.png" width="26" height="26" >
+                <br>
+              Guardar</a>
+      <!-- >div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="sicronizar()"
+              class="ui-btn ui-icon-recycle ui-btn-icon-left ui-shadow ui-corner-all" id="sicronizar"
+              name="sicronizar">Sicronizar</a></div>
+        </div>
+        <div class="ui-block-b">
+          <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="guardar()"
+              class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow ui-corner-all" id="guardar"
+              name="guardar">Guardar</a></div>
+        </div>
+
+      </div-->
+
+    </div>
+
+    <div data-role="footer">
+      <h1>OperaGAS</h1>
+    </div>
+  </div>
+
+  <!-- dialog #page2  -->
+  <div id="dialog" data-role="page">
+    <div data-role="header">
+      <h1>Transacci&oacute;n</h1>
+    </div>
+    <div data-role="content" id="msg">
+      Se han guardado los datos
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+
+    function guardar() {
+
+      showLoading();
+      $.ajax({
+        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/ejemplo.php",
+        method: "POST",
+        data: $("#forma").serialize(), success: function (result) {
+          //console.info("result:",result);
+          var obj = $.parseJSON(result);
+          $("#msg").html("Se registro suministro " + obj.exito);
+
+          $.mobile.changePage("#dialog", {
+            role: "dialog"  // show #page2 as dialog
+          });
+
+        }
+      });
+
+      return false;
+    }
+    function sicronizar() {
+      var forma = $("#forma").serialize();
+      //console.info("forma:", forma);
+      $("#msg").html(forma);
+      $.mobile.changePage("#dialog", {
+        role: "dialog"  // show #page2 as dialog
+      })
+
+    }
+    /***************** funciones loading ***********************/
+    function hideLoading() {
+
+      $.mobile.loading('hide', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
+    function showLoading() {
+
+      $.mobile.loading('show', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
+/***********************************************************/
+
+
+  </script>
+</body>
+
+
+</html>

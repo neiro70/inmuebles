@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>    
+  <meta http-equiv='expires' content='0'>    
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/gas-rojo.min.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <!--link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"-->
+  <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+  <div data-role="page" id="pageone">
+    <div data-role="panel" id="mypanel">
+
+      <!-- panel content goes here -->
+
+
+      <ul data-role="listview" data-inset="false">
+        <li data-icon="edit"><a id="linkregistrar" href="javascript:window.location.href = 'insumo.html'">Registrar</a>
+          </li>
+        <li data-icon="calendar"><a id="linkAgendar" href="javascript:window.location.href = 'agendar.html'">Agendar</a>
+        </li>
+        <li data-icon="star"><a id="linkReporte" href="javascript:window.location.href = 'reporte.html'">Reportes</a>
+        </li>
+        <li data-icon="user"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Cliente</a>
+        </li>
+        <li data-icon="grid"><a id="linkDasboard" href="javascript:window.location.href = 'dashboard.html'">Dasboard</a></li>
+        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Cerrar</a></li>
+      </ul>
+
+
+    </div><!-- /panel -->
+
+
+    <div data-role="header">
+      <a href="#mypanel" id="cambiaVentana"
+        class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
+      <h1>Reportes</h1>
+
+    </div>
+    <div  class="ui-content">
+
+      <ul data-role="listview" data-inset="false">
+        <li><a href="javascript:window.location.href = 'listaAgenda.html'">Agendados</a></li>
+        <li><a href="javascript:window.location.href = 'lista.html'">Suministros</a></li>
+        <li><a href="javascript:window.location.href = 'listaChecklist.html'">CheckList</a></li>
+        <li><a href="#">Cuentas por cobrar</a></li>
+        <li><a href="#">Gastos</a></li>
+        <li><a href="#">Ingresos</a></li>
+        <li><a href="#">  Metodos de pago</a></li>
+    </ul>
+
+
+    </div>
+
+    <div data-role="footer">
+      <h1>OperaGAS</h1>
+    </div>
+  </div>
+
+  <script>
+
+
+    $(document).ready(function () {
+      console.log("ready!");
+      //$("#buscar").click(); 
+      $("#linkRegistro").attr("href","index.html?r="+Math.random() );
+
+    });
+
+
+
+    $("#cambiaVentana").click(function(){
+      $("#linkRegistro").attr("href","index.html?r="+Math.random() );
+    });
+
+</script>
+</body>
+
+
+</html>

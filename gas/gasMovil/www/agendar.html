@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>    
+  <meta http-equiv='expires' content='0'>    
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/gas-rojo.min.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+  <div data-role="page" id="pageone">
+    <div data-role="panel" id="mypanel">
+
+      <!-- panel content goes here -->
+
+      <ul data-role="listview" data-inset="false">
+        <li data-icon="edit"><a id="linkregistrar" href="javascript:window.location.href = 'insumo.html'">Registrar</a>
+          </li>
+        <li data-icon="calendar"><a id="linkAgendar" href="javascript:window.location.href = 'agendar.html'">Agendar</a>
+        </li>
+        <li data-icon="star"><a id="linkReporte" href="javascript:window.location.href = 'reporte.html'">Reportes</a>
+        </li>
+        <li data-icon="user"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Cliente</a>
+        </li>
+        <li data-icon="grid"><a id="linkDasboard" href="javascript:window.location.href = 'dashboard.html'">Dasboard</a></li>
+        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Cerrar</a></li>
+      </ul>
+
+
+    </div><!-- /panel -->
+
+
+    <div data-role="header">
+      <a href="#mypanel" id="cambiaVentana"
+        class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
+      <h1>Agendar </h1>
+
+    </div>
+    <div data-role="main" class="ui-content">
+
+      <form id="formaAgendar">
+
+        <label for="crfc">RFC:</label>
+        <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="MAAJ830101U41">
+        <label for="ctelefono">Telefono:</label>
+        <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
+    
+        <label for="cfecha"> Fecha:</label>
+        <input type="date" name="cfecha" id="cfecha" value="">
+        <label for="chora">Hora:</label>
+        <input type="time" data-clear-btn="false" name="chora" id="chora" value="">
+        <label for="cdireccion">Direccion:</label>
+        <textarea name="cdireccion" id="cdireccion">
+        </textarea>
+      </form>
+      <a href="#" onclick="guardarCita()" 
+              class="ui-btn  ui-shadow ui-corner-all" id="guardar"
+              name="guardar">
+              <img src="img/save.png" width="26" height="26" >
+                <br>
+              Guardar</a>
+
+    </div>
+
+    <div data-role="footer">
+      <h1>OperaGAS</h1>
+    </div>
+  </div>
+
+  <!-- dialog #page2  -->
+  <div id="dialog" data-role="page">
+    <div data-role="header">
+      <h1>Transacci&oacute;n</h1>
+    </div>
+    <div data-role="content" id="msg">
+      Se han guardado los datos
+    </div>
+  </div>
+<script>
+function guardarCita() {
+
+showLoading();
+$.ajax({
+  url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/agendar.php",
+  method: "POST",
+  data: $("#formaAgendar").serialize(), 
+  success: function (result) {
+    //console.info("result:",result);
+    var obj = $.parseJSON(result);
+    $("#msg").html("Exito se agendo " + obj.exito);
+
+    $.mobile.changePage("#dialog", {
+      role: "dialog"  // show #page2 as dialog
+    });
+
+  }
+});
+
+return false;
+}
+
+    /***************** funciones loading ***********************/
+    function hideLoading() {
+
+$.mobile.loading('hide', {
+  text: 'Cargando',
+  textVisible: true,
+  theme: 'z',
+  html: ""
+});
+}
+function showLoading() {
+
+$.mobile.loading('show', {
+  text: 'Cargando',
+  textVisible: true,
+  theme: 'z',
+  html: ""
+});
+}
+/***********************************************************/
+
+</script>
+</body>
+
+
+</html>
