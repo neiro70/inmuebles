@@ -10,7 +10,7 @@
     $extension = end($test);    
     $name = rand(100,999).'.'.$extension;
     //$ABS_PATH='/opt/lampp/htdocs/inmuebles/gas/gasWeb/mvc/view/gas/';
-    $ABS_PATH='/home1/dratlcom/public_html/inmuebles/gas/gasWeb/mvc/view/gas/';
+    $ABS_PATH='/home1/dratlcom/public_html/inmuebles/gas/gasWeb/mvc/view/gas/uploads';
     $location = $ABS_PATH.$name;
     move_uploaded_file($_FILES['file']['tmp_name'], $location);
     chmod( $location, 0755);
