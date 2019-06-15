@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $db = new MySQL();      
     $conn=$db->getConexion();
-    $sql = "INSERT INTO `t05checklist` ( `litros`, `aceite`, `anticongelante`, `llantas`, `limpieza`, `reporte`, `foto`, `idUsuario`,`fecha`) VALUES (`{$litros}`, `{$aceite}`, `{$anticongelante}`, `{$llantas}`, `{$limpieza}`, `{$reporte}`, `{$foto}`, `{$idUsuario}`, CURRENT_TIMESTAMP)";
+    $sql = "INSERT INTO t05checklist ( litros, aceite, anticongelante, llantas, limpieza, reporte, foto, idUsuario,fecha) VALUES ('{$litros}', '{$aceite}', '{$anticongelante}', '{$llantas}', '{$limpieza}', '{$reporte}', '{$foto}' ,'{$idUsuario}', CURRENT_TIMESTAMP ) ";
 
     if ($conn->query($sql) === TRUE) {
       $input['exito'] = $conn->insert_id;
