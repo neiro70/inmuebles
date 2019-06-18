@@ -43,8 +43,8 @@
 
       <form id="forma" >
 
-        <label for="clitrossalida">Cantidad de Litros Salida:</label>
-        <input type="range" name="clitrossalida" id="clitrossalida" value="0" min="0" max="100" data-highlight="true">
+        <label for="litros">Cantidad de Litros Salida:</label>
+        <input type="range" name="litros" id="litros" value="0" min="0" max="100" data-highlight="true">
         <!--label for="clitrosregreso">Cantidad de Litros Regreso:</label>
         <input type="range" name="clitrosregreso" id="clitrosregreso" value="0" min="0" max="100" data-highlight="true" -->
         <label for="cnombre">Foto Inicial:</label>
@@ -53,17 +53,20 @@
         <!--label for="cnombre">Foto Final:</label>
         <input type="file"  name="camaterno" id="camaterno" value="">
         <input type="image"  name="cimage2" id="cimage2" src="img/image-not-found.png" width="100%"-->
-        <label for="cnaceite">Nivel de Aceite %</label>
-        <input type="range" name="cnaceite" id="cnaceite" value="0" min="0" max="100" data-highlight="true">
-        <label for="canticongelate">Nivel de Anticongelante %</label>
-        <input type="range" name="canticongelate" id="canticongelate" value="0" min="0" max="100" data-highlight="true">
-        <label for="cllantas">llantas:</label>
-        <input type="range" name="cllantas" id="cllantas" value="0" min="0" max="10" data-highlight="true">
+        <label for="aceite">Nivel de Aceite %</label>
+        <input type="range" name="aceite" id="aceite" value="0" min="0" max="100" data-highlight="true">
+        <label for="anticongelante">Nivel de Anticongelante %</label>
+        <input type="range" name="anticongelante" id="anticongelante" value="0" min="0" max="100" data-highlight="true">
+        <label for="llantas">llantas:</label>
+        <input type="range" name="llantas" id="llantas" value="0" min="0" max="10" data-highlight="true">
 
-        <label for="clitros">Limpieza</label>
-        <input type="range" name="climpieza" id="climpieza" value="0" min="0" max="10" data-highlight="true">
-        <label for="cobeservaciones">Reporte:</label>
-        <textarea name="cobeservaciones" id="cobeservaciones">
+        <label for="limpieza">Limpieza</label>
+        <input type="range" name="limpieza" id="limpieza" value="0" min="0" max="10" data-highlight="true">
+        
+        <label for="idUsuario">Usuario</label>
+        <select id="idUsuario" name="idUsuario"><option value="2">JORGE</option><option value="3">JAVIER</option></select>       
+        <label for="reporte">Reporte:</label>
+        <textarea name="reporte" id="reporte">
         </textarea>
       </form>
       <br>
@@ -107,29 +110,34 @@
   <script type="text/javascript">
 
     function guardar() {
-     // showLoading();
-	  document.location.href = 'login.html?idChecklist=1';
-	  
-	  
-/**     
-	$.ajax({
-        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/guardaCheckList.php",
-        method: "POST",
-        data: $("#forma").serialize(), success: function (result) {
-          //console.info("result:",result);
-          var obj = $.parseJSON(result);
-		  if(obj.exito){
-			$("#msg").html("Se registro suministro " + obj.exito);	
-			document.location.href = 'login.html?idChecklist=' + obj.idChecklist;
-		  }else{
-			$("#msg").html("Error al guardar el checklist, intentelo nuevamente");	
-		  }
-        }
-      });
-
-      return false; 
-	  **/
+     showLoading();
+        $.ajax({
+              url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/checklist.php",
+              method: "POST",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              data: $("#forma").serialize(), 
+              success: function (result) {
+                console.info("result:",result);
+                var obj = $.parseJSON(result);
+                if(obj.exito != 0){
+               // $("#msg").html("Se registro suministro " + obj.exito);	
+                  document.location.href = 'login.html?idChecklist=' + obj.exito;
+                  
+                }else{
+                  $("#msg").html("Error al guardar el checklist, intentelo nuevamente");	
+                }
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ 
     }
+
+
+
+
     function sicronizar() {
       var forma = $("#forma").serialize();
       //console.info("forma:", forma);
