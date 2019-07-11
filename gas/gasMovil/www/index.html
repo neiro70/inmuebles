@@ -99,7 +99,7 @@
     function guardar() {
      showLoading();
         $.ajax({
-              url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/checklist.php",
+              url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/checklist.php",
               method: "POST",
               headers : {
                   'Cache-Control': 'no-transform'
@@ -194,7 +194,7 @@ function uploadFiles(event,idInputFile)
 	    
 	    $.ajaxSetup ({ cache: false });	
 	    $.ajax({
-	        url: 'http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlUpload.php?files',
+	        url: 'http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlUpload.php?files',
 	        type: 'POST',
 	        data: data,
 	        cache: false,
@@ -214,7 +214,7 @@ function uploadFiles(event,idInputFile)
 	               //reloadTable();
 
                  
-                 $("#cimage1").attr("src","http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlGetFile.php?idimg="+data.idimg);
+                 $("#cimage1").attr("src","http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlGetFile.php?idimg="+data.idimg);
 	            	 
 	            }else{
                 console.info("ERROR:",data);
