@@ -17,26 +17,8 @@
 <body>
 
   <div data-role="page" id="pageone">
-    <div data-role="panel" id="mypanel">
-
-      <!-- panel content goes here -->
-
-
-      <ul data-role="listview" data-inset="false">
-        <li data-icon="info"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Ayuda</a>
-        </li>
-        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Salir</a></li>
-      </ul>
-
-
-    </div><!-- /panel -->
-
-
     <div data-role="header">
-      <a href="#mypanel" id="cambiaVentana"
-        class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
       <h1>Checklist</h1>
-
     </div>
 
     <div data-role="main" class="ui-content">
@@ -49,7 +31,12 @@
         <input type="range" name="clitrosregreso" id="clitrosregreso" value="0" min="0" max="100" data-highlight="true" -->
         <label for="cnombre">Foto Inicial:</label>
         <input type="file"  name="fotoInicial" id="fotoInicial" >
-        <input type="image"  name="cimage1" id="cimage1" src="img/image-not-found.png" width="100%">
+          <div style="text-align: center;">
+            <img name="cimage1" id="cimage1"  src="img/image-not-found.png" alt="image" width="100%"/>
+          </div>
+          
+      
+        
         <!--label for="cnombre">Foto Final:</label>
         <input type="file"  name="camaterno" id="camaterno" value="">
         <input type="image"  name="cimage2" id="cimage2" src="img/image-not-found.png" width="100%"-->
@@ -167,7 +154,87 @@
       });
     }
 /***********************************************************/
+	// Variable to store your files
+	var files;
 
+	// Add events
+	$('input[type=file]').on('change', 
+			function prepareUpload(event){
+
+	  		files = event.target.files;
+	  		uploadFiles(event,this.id);
+	 
+	});
+
+
+	// Catch the form submit and upload the files
+function uploadFiles(event,idInputFile)
+	{
+	  event.stopPropagation(); // Stop stuff happening
+	    event.preventDefault(); // Totally stop stuff happening
+
+	    // START A LOADING SPINNER HERE
+
+	    // Create a formdata object and add the files
+	    var data = new FormData();
+		 data.append('nombre',"prueba.png");
+     data.append('idcheck',1);
+
+
+	    $.each(files, function(key, value)
+	    {
+	        data.append(key, value);
+	    });
+
+		if(idInputFile == 'fotoInicial'){	
+			data.append('posicion',1);
+		}else{
+			data.append('posicion',2);
+		}
+	    
+	    $.ajaxSetup ({ cache: false });	
+	    $.ajax({
+	        url: 'http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlUpload.php?files',
+	        type: 'POST',
+	        data: data,
+	        cache: false,
+	        dataType: 'json',
+	        processData: false, // Don't process the files
+	        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+		  	 beforeSend: function( xhr ) {
+            showLoading();
+			  	  },
+	        success: function(data, textStatus, jqXHR)
+	        {
+							//console.info("data:",data);        
+	            if( typeof data.error === 'undefined')
+	            {
+	                // Success so call function to process the form
+	               //toastr.success("Exito al subir archivo!");
+	               //reloadTable();
+
+                 
+                 $("#cimage1").attr("src","http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlGetFile.php?idimg="+data.idimg);
+	            	 
+	            }else{
+                console.info("ERROR:",data);
+	            	//toastr.error('Error al subir el archivo!');
+	            }
+	            
+	        },
+	        error: function(jqXHR, textStatus, errorThrown)
+	        {
+            console.info("ERROR:",jqXHR);
+              // Handle errors here
+	           // toastr.error('ERRORS: ' + textStatus);
+	            // STOP LOADING SPINNER
+	        },
+		      complete: function() {
+            hideLoading();
+		          
+		      }
+	    });
+	}
 
   </script>
 </body>
