@@ -24,9 +24,9 @@ if(isset($_GET['files']))
 		VALUES ('{$idcheck}','{$nombre}','{$txtNombre}','{$base64}')";
 		
 		if ($conn->query($sql) === TRUE) {
-			$data = array('success' => 1);
+			$data = array('idimg' => $conn->insert_id);
 		} else {
-			$data = array('error' => 0);
+			$data = array('idimg' => 0);
 		}
 		
 	
@@ -37,7 +37,7 @@ if(isset($_GET['files']))
 }
 else
 {
-	$data = array('error' => 0);
+	$data = array('idimg' => 0);
 }
 
 
