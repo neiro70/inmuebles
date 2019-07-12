@@ -18,18 +18,21 @@
 
   <div data-role="page" id="pageone">
     <div data-role="header">
-      <h1>Checklist</h1>
+      <h1><img src="img/tacometro.svg" width="36" height="36" style="margin-bottom: -10px;" >  CHECKLIST  </h1>
     </div>
 
     <div data-role="main" class="ui-content">
 
       <form id="forma" >
 
-        <label for="litros">Cantidad de Litros Salida:</label>
+        <label for="litros"><img src="img/gasolina.svg" width="36" height="36" style="margin-bottom: -10px;" > Cantidad de Litros Salida</label>
         <input type="range" name="litros" id="litros" value="0" min="0" max="100" data-highlight="true">
+        <label for="totalizador"> <img src="img/tacometro2.png" width="36" height="36" style="margin-bottom: -10px;" > Totalizador %</label>
+        <input type="range" name="totalizador" id="totalizador" value="0" min="0" max="100" data-highlight="true">
+
         <!--label for="clitrosregreso">Cantidad de Litros Regreso:</label>
         <input type="range" name="clitrosregreso" id="clitrosregreso" value="0" min="0" max="100" data-highlight="true" -->
-        <label for="cnombre">Foto Inicial:</label>
+        <label for="cnombre"><img src="img/camara.svg" width="36" height="36" style="margin-bottom: -10px;" > Foto</label>
         <input type="file"  name="fotoInicial" id="fotoInicial" >
           <div style="text-align: center;">
             <img name="cimage1" id="cimage1"  src="img/image-not-found.png" alt="image" width="100%"/>
@@ -40,19 +43,22 @@
         <!--label for="cnombre">Foto Final:</label>
         <input type="file"  name="camaterno" id="camaterno" value="">
         <input type="image"  name="cimage2" id="cimage2" src="img/image-not-found.png" width="100%"-->
-        <label for="aceite">Nivel de Aceite %</label>
+        <label for="aceite"><img src="img/aceite.svg" width="36" height="36" style="margin-bottom: -10px;" > Nivel de Aceite %</label>
         <input type="range" name="aceite" id="aceite" value="0" min="0" max="100" data-highlight="true">
-        <label for="anticongelante">Nivel de Anticongelante %</label>
+        <label for="anticongelante"><img src="img/anti.svg" width="36" height="36" style="margin-bottom: -10px;" > Nivel de Anticongelante %</label>
         <input type="range" name="anticongelante" id="anticongelante" value="0" min="0" max="100" data-highlight="true">
-        <label for="llantas">llantas:</label>
+        <label for="llantas"><img src="img/llanta.png" width="36" height="36" style="margin-bottom: -10px;" > llantas</label>
         <input type="range" name="llantas" id="llantas" value="0" min="0" max="10" data-highlight="true">
 
-        <label for="limpieza">Limpieza</label>
+        <label for="limpieza"><img src="img/clean.svg" width="36" height="36" style="margin-bottom: -10px;" >Limpieza</label>
         <input type="range" name="limpieza" id="limpieza" value="0" min="0" max="10" data-highlight="true">
         
-        <label for="idUsuario">Usuario</label>
-        <select id="idUsuario" name="idUsuario"><option value="2">JORGE</option><option value="3">JAVIER</option></select>       
-        <label for="reporte">Reporte:</label>
+        <label for="idUsuario"><img src="img/operador.svg" width="36" height="36" style="margin-bottom: -10px;" > Usuario</label>
+        <select id="idUsuario" name="idUsuario">
+          <option value="2">JORGE</option>
+          <option value="3">JAVIER</option>
+        </select>       
+        <label for="reporte"><img src="img/lapiz.svg" width="36" height="36" style="margin-bottom: -10px;" > Reporte</label>
         <textarea name="reporte" id="reporte">
         </textarea>
       </form>
@@ -80,7 +86,7 @@
     </div>
 
     <div data-role="footer">
-      <h1>OperaGAS</h1>
+      <h1>GAS IMPERIO </h1> 
     </div>
   </div>
 
