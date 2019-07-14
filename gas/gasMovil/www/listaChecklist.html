@@ -42,24 +42,22 @@
     <div data-role="header">
       <a href="#mypanel" id="cambiaVentana"
         class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
-      <h1>Buscar</h1>
+      <h1>Buscar por usuario</h1>
 
     </div>
     <div class="ui-content">
-
-      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
-      </ul>
-      <br>
-      <label for="cusuario">Usuario:</label>
-      <input type="text" data-clear-btn="true" name="cusuario" id="cusuario" value="jorge">
+      <select id="idUsuario" name="idUsuario">
+        <option value="1">Seleccione</option>
+      </select>  
 
       <input type="button" data-icon="search" value="Buscar" id="buscar" onclick="buscar()">
-
+      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
+      </ul>
 
     </div>
 
     <div data-role="footer">
-      <h1>OperaGAS</h1>
+      <h1>GAS IMPERIO</h1>
     </div>
   </div>
 
@@ -68,13 +66,13 @@
     function buscar() {
 
       showLoading();
-      var params = "crfc=" + $("#xcrfc").val();//+"r:"+Math.random();
+      var params = "idUsuario=" + $("#idUsuario").val();//+"r:"+Math.random();
       //console.info(params);
       $.ajax({
-        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaCheckList.php",
+        url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaCheckList.php",
         method: "GET",
         data: params, success: function (result) {
-          // console.info("result:",result);
+         // console.info("result:",result);
           var rows = $.parseJSON(result);
 
           var $ul = $("#lista");
@@ -82,7 +80,15 @@
           $.each(rows, function (i, obj) {
             console.info("result:",obj);
             //var tipopago = obj.idtipopago == "1" ? "EFECTIVO" : "TARJETA";
-            var content = '<li data-icon="false"><a href="#"><img src="img/calendar.svg" style="padding-top:10px;padding-left:10px;" width="65px"/>' + obj.fecha+'<br>TEL: '+ obj.telefono+'<br>Diección: '+ obj.direccion+'</a></li>';
+            var content = '<li data-icon="false"><a href="#"><img src="data:image/jpeg;base64,'+obj.base64+
+            '" style="padding-top:10px;padding-left:10px;" width="65px"/>Aceite:' + obj.aceite+
+              '<br>Anticongelate: '+ obj.anticongelante+
+              '<br>Limpieza: '+ obj.limpieza+
+              '<br>Litros: '+ obj.litros+
+              '<br>Llantas: '+ obj.llantas+
+              '<br>Reporte: '+ obj.reporte+
+              '<br>Fecha: '+ obj.fecha+
+              '</a></li>';
             $ul.append(content);
           });
           $ul.listview( "refresh" );
@@ -137,6 +143,36 @@
       });
     }
     /***********************************************************/
+
+
+function cargaUsuario(){
+  $("#idUsuario").empty();
+  showLoading();
+        $.ajax({
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaUsuarioByRol.php?idRol=5",
+              method: "get",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              success: function (result) {
+               
+                var data = $.parseJSON(result);
+
+                $.each(data, function(i, obj) {
+                 // console.info("obj:",obj);
+                  $("#idUsuario").append('<option value='+obj.idt01usuario+'>'+obj.txtusuario+'</option>');
+                });
+
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ }
+ $( document ).ready(function() {
+    cargaUsuario();
+  });
+
+
   </script>
 </body>
 </html>

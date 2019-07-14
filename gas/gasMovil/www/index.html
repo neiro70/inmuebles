@@ -37,6 +37,7 @@
           <div style="text-align: center;">
             <img name="cimage1" id="cimage1"  src="img/image-not-found.png" alt="image" width="100%"/>
           </div>
+          <input type="hidden" name="idImg" id="idImg">
           
       
         
@@ -53,10 +54,9 @@
         <label for="limpieza"><img src="img/clean.svg" width="36" height="36" style="margin-bottom: -10px;" >Limpieza</label>
         <input type="range" name="limpieza" id="limpieza" value="0" min="0" max="10" data-highlight="true">
         
-        <label for="idUsuario"><img src="img/operador.svg" width="36" height="36" style="margin-bottom: -10px;" > Usuario</label>
+        <label for="idUsuario"><img src="img/gasero.svg" width="36" height="36" style="margin-bottom: -10px;" > Usuario</label>
         <select id="idUsuario" name="idUsuario">
-          <option value="2">JORGE</option>
-          <option value="3">JAVIER</option>
+          <option value="1">Seleccione</option>
         </select>       
         <label for="reporte"><img src="img/lapiz.svg" width="36" height="36" style="margin-bottom: -10px;" > Reporte</label>
         <textarea name="reporte" id="reporte">
@@ -112,7 +112,7 @@
               },
               data: $("#forma").serialize(), 
               success: function (result) {
-                console.info("result:",result);
+               // console.info("result:",result);
                 var obj = $.parseJSON(result);
                 if(obj.exito != 0){
                // $("#msg").html("Se registro suministro " + obj.exito);	
@@ -212,7 +212,7 @@ function uploadFiles(event,idInputFile)
 			  	  },
 	        success: function(data, textStatus, jqXHR)
 	        {
-							//console.info("data:",data);        
+							console.info("data:",data);        
 	            if( typeof data.error === 'undefined')
 	            {
 	                // Success so call function to process the form
@@ -221,6 +221,7 @@ function uploadFiles(event,idInputFile)
 
                  
                  $("#cimage1").attr("src","http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/controller/ctrlGetFile.php?idimg="+data.idimg);
+                 $("#idImg").val(data.idimg);
 	            	 
 	            }else{
                 console.info("ERROR:",data);
@@ -241,6 +242,35 @@ function uploadFiles(event,idInputFile)
 		      }
 	    });
 	}
+
+ function cargaUsuario(){
+  $("#idUsuario").empty();
+  showLoading();
+        $.ajax({
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaUsuarioByRol.php?idRol=5",
+              method: "get",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              success: function (result) {
+               
+                var data = $.parseJSON(result);
+
+                $.each(data, function(i, obj) {
+                 // console.info("obj:",obj);
+                  $("#idUsuario").append('<option value='+obj.idt01usuario+'>'+obj.txtusuario+'</option>');
+                });
+
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ }
+
+
+  $( document ).ready(function() {
+    cargaUsuario();
+  });
 
   </script>
 </body>
