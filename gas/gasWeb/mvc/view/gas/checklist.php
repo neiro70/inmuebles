@@ -17,13 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $reporte=trim($_POST['reporte']);
     $idUsuario=trim($_POST['idUsuario']);
     $foto=trim($_POST['foto']);
+    $idImg=trim($_POST['idImg']);
 
     $db = new MySQL();      
     $conn=$db->getConexion();
     $sql = "INSERT INTO t05checklist ( litros, aceite, anticongelante, llantas, limpieza, reporte, foto, idUsuario,fecha) VALUES ('{$litros}', '{$aceite}', '{$anticongelante}', '{$llantas}', '{$limpieza}', '{$reporte}', '{$foto}' ,'{$idUsuario}', CURRENT_TIMESTAMP ) ";
 
     if ($conn->query($sql) === TRUE) {
-      $input['exito'] = $conn->insert_id;
+      $idCheck=$conn->insert_id;
+
+      $sql = "UPDATE t06imgchecklits SET  idcheck={$idCheck} WHERE idimg ={$idImg} ";
+      if ($conn->query($sql) === TRUE) {
+        $input['exito'] = $idCheck;
+      }else{
+        $input['exito'] = 0;
+      }
+
     }else{
       $input['exito'] = 0;
     }
