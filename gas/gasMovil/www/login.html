@@ -51,7 +51,8 @@
 
     <div data-role="content" class="ui-content testheader">
       <img src="img/logo.png" width="115px" style="margin-top:80px;" />
-  <input type="hidden" name="idCheckList" id="idCheckList">
+      <input type="hidden" name="idCheckList" id="idCheckList">
+      <input type="hidden" name="idUsuario" id="idUsuario">
   
       <input type="text" data-clear-btn="true" name="cusuario" id="cusuario" value="" data-placeholder="true"
         placeholder="Usuario">
@@ -88,13 +89,16 @@
 	}	
 
 	$( document ).ready(function() {
-	var checklistValue= getParameterByName('idChecklist');
+	/*var checklistValue= getParameterByName('idChecklist');
+  var idUsuario= getParameterByName('idUsuario');
+
 		if ( checklistValue){
 			$("#idCheckList").val(checklistValue);
+      $("#idUsuario").val(idUsuario);
 		}else{
-			alert ("No hay checklist, Error");
+		//	alert ("No hay checklist, Error");
 			 document.location.href = 'index.html';
-		}
+		}*/
 	});
 	
  
@@ -118,15 +122,20 @@
     function validarDatoUsuarioGuardado(pusuario, ppassword) {
       showLoading();
       $.ajax({
-        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/acceso.php?usuario=" + pusuario + "&password=" + ppassword + "&idCheckList=" + idCheckList,
+        url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/acceso.php?usuario=" + pusuario + "&password=" + ppassword + "&idCheckList=" + idCheckList,
         method: "GET",
         success: function (result) {
           var obj = $.parseJSON(result);
-
+            
           if (obj.length > 0) {
-				hideLoading()
-            	$.mobile.changePage("dashboard.html")
-            //window.location.href = "dashboard.html";
+				      //hideLoading()
+              
+              localStorage.setItem('idUsuario',obj[0].idt01usuario);
+              localStorage.setItem('idRol',obj[0].idrol);
+              localStorage.setItem('userName',obj[0].txtnombre);
+              //console.info(">>>>>>>>>>>>>",obj[0]);
+             // $.mobile.changePage("dashboard.html");
+             window.location.href = "dashboard.html";
           } else {
             //alert("Los datos que ingresaste no son correctos");
             

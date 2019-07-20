@@ -33,7 +33,7 @@
         <!--label for="clitrosregreso">Cantidad de Litros Regreso:</label>
         <input type="range" name="clitrosregreso" id="clitrosregreso" value="0" min="0" max="100" data-highlight="true" -->
         <label for="cnombre"><img src="img/camara.svg" width="36" height="36" style="margin-bottom: -10px;" > Foto</label>
-        <input type="file"  name="fotoInicial" id="fotoInicial" >
+        <input type="file"  name="fotoInicial" id="fotoInicial" accept="image/*" capture >
           <div style="text-align: center;">
             <img name="cimage1" id="cimage1"  src="img/image-not-found.png" alt="image" width="100%"/>
           </div>
@@ -63,17 +63,17 @@
         </textarea>
       </form>
       <br>
-      <a href="#" onclick="guardar()" 
+      <!---- >a href="#" onclick="guardar()" 
               class="ui-btn  ui-shadow ui-corner-all" id="guardar"
               name="guardar">
               <img src="img/save.png" width="26" height="26" >
                 <br>
-              Guardar</a>
-      <!-- >div class="ui-grid-a">
+              Guardar</a -->
+      <div class="ui-grid-a" >
         <div class="ui-block-a">
-          <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="sicronizar()"
-              class="ui-btn ui-icon-recycle ui-btn-icon-left ui-shadow ui-corner-all" id="sicronizar"
-              name="sicronizar">Sicronizar</a></div>
+          <div class="ui-bar ui-bar-a" style="height:60px;"><a href="javascript: document.location.href = 'login.html'"
+              class="ui-btn ui-icon-user ui-btn-icon-left ui-shadow ui-corner-all" id="login"
+              name="login">Login</a></div>
         </div>
         <div class="ui-block-b">
           <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="guardar()"
@@ -81,7 +81,7 @@
               name="guardar">Guardar</a></div>
         </div>
 
-      </div-->
+      </div>
 
     </div>
 
@@ -116,7 +116,8 @@
                 var obj = $.parseJSON(result);
                 if(obj.exito != 0){
                // $("#msg").html("Se registro suministro " + obj.exito);	
-                  document.location.href = 'login.html?idChecklist=' + obj.exito;
+                 // document.location.href = 'login.html?idChecklist=' + obj.exito+'&idUsuario='+ $("#idUsuario").val();
+                  document.location.href = 'login.html';
                   
                 }else{
                   $("#msg").html("Error al guardar el checklist, intentelo nuevamente");	
@@ -212,7 +213,7 @@ function uploadFiles(event,idInputFile)
 			  	  },
 	        success: function(data, textStatus, jqXHR)
 	        {
-							console.info("data:",data);        
+							//console.info("data:",data);        
 	            if( typeof data.error === 'undefined')
 	            {
 	                // Success so call function to process the form
@@ -258,7 +259,7 @@ function uploadFiles(event,idInputFile)
 
                 $.each(data, function(i, obj) {
                  // console.info("obj:",obj);
-                  $("#idUsuario").append('<option value='+obj.idt01usuario+'>'+obj.txtusuario+'</option>');
+                  $("#idUsuario").append('<option value='+obj.idt01usuario+'>'+obj.txtnombre+'</option>');
                 });
 
               },complete:function(){

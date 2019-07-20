@@ -29,10 +29,8 @@
         </li>
         <li data-icon="star"><a id="linkReporte" href="javascript:window.location.href = 'reporte.html'">Reportes</a>
         </li>
-        <li data-icon="user"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Cliente</a>
-        </li>
         <li data-icon="grid"><a id="linkDasboard" href="javascript:window.location.href = 'dashboard.html'">Dasboard</a></li>
-        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Cerrar</a></li>
+        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'login.html'">Cerrar</a></li>
       </ul>
 
 
@@ -59,7 +57,7 @@
         <label for="camaterno">Apellido Materno:</label>
         <input type="text" data-clear-btn="true" name="camaterno" id="camaterno" value="">
         <label for="crfc">RFC:</label>
-        <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="MAAJ830101U41">
+        <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="">
         <label for="ctelefono"><img src="img/telefono.svg" width="36" height="36" style="margin-bottom: -10px;" > Telefono</label>
         <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
         <label for="cimporte">Importe:</label>
@@ -73,19 +71,14 @@
         <label for="cmonto"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Monto</label>
         <input type="number" data-clear-btn="true" name="cmonto" id="cmonto" value="">
         <label for="cpago"><img src="img/tarjeta.svg" width="36" height="36" style="margin-bottom: -10px;" > Pago</label>
-        <select name="cpago" id="cpago">
-                <option value="1">Efectivo</option>
-                <option value="2">TPV Santander</option>
-                <option value="3">TPV Amex </option>
-                <option value="4">BBVA</option>
-                <option value="5">BNMX</option>
-                <option value="6">Gasomatic</option>    
+        <select name="cpago" id="cpago"> 
         </select>
         <label for="cfecha"><img src="img/agenda.svg" width="36" height="36" style="margin-bottom: -10px;" >  Proximo Suministro</label>
         <input type="date" name="cfecha" id="cfecha" value="">
         <label for="cobeservaciones"><img src="img/lapiz.svg" width="36" height="36" style="margin-bottom: -10px;" > Observaciones</label>
         <textarea name="cobeservaciones" id="cobeservaciones">
         </textarea>
+        <input type="hidden" name="idUsuario" id="idUsuario">
       </form>
       <br>
       <a href="#" onclick="guardar()" 
@@ -129,10 +122,12 @@
 
 
     function guardar() {
-
+     
+    console.info("forma:", $("#forma").serialize());
+   
       showLoading();
       $.ajax({
-        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/ejemplo.php",
+        url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/ejemplo.php",
         method: "POST",
         data: $("#forma").serialize(), success: function (result) {
           //console.info("result:",result);
@@ -178,6 +173,36 @@
     }
 /***********************************************************/
 
+
+function cargaFormaPago(){
+  $("#cpago").empty();
+  showLoading();
+        $.ajax({
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaFormaPago.php",
+              method: "get",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              success: function (result) {
+               
+                var data = $.parseJSON(result);
+
+                $.each(data, function(i, obj) {
+                 // console.info("obj:",obj);
+                  $("#cpago").append('<option value='+obj.idc02pago+'>'+obj.descripcion+'</option>');
+                });
+
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ }
+
+
+$( document ).ready(function() {
+     $("#idUsuario").val(localStorage.getItem('idUsuario'));
+     cargaFormaPago();
+  });
 
   </script>
 </body>

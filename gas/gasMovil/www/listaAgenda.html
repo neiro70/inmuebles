@@ -28,10 +28,8 @@
         </li>
         <li data-icon="star"><a id="linkReporte" href="javascript:window.location.href = 'reporte.html'">Reportes</a>
         </li>
-        <li data-icon="user"><a id="linkCliente" href="javascript:window.location.href = 'cliente.html'">Cliente</a>
-        </li>
         <li data-icon="grid"><a id="linkDasboard" href="javascript:window.location.href = 'dashboard.html'">Dasboard</a></li>
-        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'index.html'">Cerrar</a></li>
+        <li data-icon="power"><a id="linkCerrar" href="javascript:window.location.href = 'login.html'">Cerrar</a></li>
       </ul>
 
 
@@ -47,14 +45,14 @@
     </div>
     <div class="ui-content">
 
-      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
-      </ul>
-      <br>
-      <label for="cdireccion">RFC:</label>
-      <input type="text" data-clear-btn="true" name="xcrfc" id="xcrfc" value="MAAJ830101U41">
+      <label for="crfc">RFC:</label>
+      <select name="xcrfc" id="xcrfc"></select>
 
       <input type="button" data-icon="search" value="Buscar" id="buscar" onclick="buscar()">
 
+      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
+      </ul>
+      
 
     </div>
 
@@ -71,7 +69,7 @@
       var params = "crfc=" + $("#xcrfc").val();//+"r:"+Math.random();
       //console.info(params);
       $.ajax({
-        url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaAgenda.php",
+        url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaAgenda.php",
         method: "GET",
         data: params, success: function (result) {
           // console.info("result:",result);
@@ -137,6 +135,37 @@
       });
     }
     /***********************************************************/
+function cargaClientes(){
+  $("#xcrfc").empty();
+  showLoading();
+        $.ajax({
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaCliente.php",
+              method: "get",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              success: function (result) {
+               
+                var data = $.parseJSON(result);
+
+                $.each(data, function(i, obj) {
+                 // console.info("obj:",obj);
+                  $("#xcrfc").append('<option value='+obj.rfc+'>'+obj.rfc+'</option>');
+                });
+
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ }
+
+ $( document ).ready(function() {
+    
+    cargaClientes();
+  });
+
+
+
   </script>
 </body>
 </html>

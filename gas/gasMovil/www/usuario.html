@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <meta http-equiv='cache-control' content='no-cache'>    
-  <meta http-equiv='expires' content='0'>    
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
   <meta http-equiv='pragma' content='no-cache'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="themes/gas-rojo.min.css">
@@ -20,6 +20,7 @@
     <div data-role="panel" id="mypanel">
 
       <!-- panel content goes here -->
+
 
       <ul data-role="listview" data-inset="false">
         <li data-icon="edit"><a id="linkregistrar" href="javascript:window.location.href = 'insumo.html'">Registrar</a>
@@ -39,32 +40,35 @@
     <div data-role="header">
       <a href="#mypanel" id="cambiaVentana"
         class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars ui-btn-icon-notext "></a>
-      <h1>Agendar </h1>
+      <h1>Registrar Usuario</h1>
 
     </div>
+
     <div data-role="main" class="ui-content">
 
-      <form id="formaAgendar">
+      <form id="forma">
 
-        <label for="crfc">RFC:</label>
-        <select name="crfc" id="crfc" ></select>
-        <label for="ctelefono">Telefono:</label>
-        <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
-    
-        <label for="cfecha"> Fecha:</label>
-        <input type="date" name="cfecha" id="cfecha" value="">
-        <label for="chora">Hora:</label>
-        <input type="time" data-clear-btn="false" name="chora" id="chora" value="">
-        <label for="cdireccion">Direccion:</label>
-        <textarea name="cdireccion" id="cdireccion">
-        </textarea>
+        <label for="cnombre">Nombre:</label>
+        <input type="text" data-clear-btn="true" name="cnombre" id="cnombre" value="">
+        <label for="cusername">Usuario:</label>
+        <input type="text" data-clear-btn="true" name="cusername" id="cusername" value="">
+        <label for="cpassword">Password:</label>
+        <input type="password" data-clear-btn="true" name="cpassword" id="cpassword" value="">
+        <label for="crol">Rol:</label>
+        <select id="crol" name="crol">
+
+        </select>
+
       </form>
-      <a href="#" onclick="guardarCita()" 
+      <br>
+      <a href="#" onclick="guardar()" 
               class="ui-btn  ui-shadow ui-corner-all" id="guardar"
               name="guardar">
               <img src="img/save.png" width="26" height="26" >
                 <br>
               Guardar</a>
+
+      </div-->
 
     </div>
 
@@ -82,56 +86,68 @@
       Se han guardado los datos
     </div>
   </div>
-<script>
-function guardarCita() {
 
-showLoading();
-$.ajax({
-  url: "http://www.dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/agendar.php",
-  method: "POST",
-  data: $("#formaAgendar").serialize(), 
-  success: function (result) {
-    //console.info("result:",result);
-    var obj = $.parseJSON(result);
-    $("#msg").html("Exito se agendo " + obj.exito);
+  <script type="text/javascript">
 
-    $.mobile.changePage("#dialog", {
-      role: "dialog"  // show #page2 as dialog
-    });
 
-  }
-});
+    function guardar() {
+     
+   // console.info("forma:", $("#forma").serialize());
+   
+      showLoading();
+      $.ajax({
+        url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/registraUsuario.php",
+        method: "POST",
+        data: $("#forma").serialize(), success: function (result) {
+          //console.info("result:",result);
+          var obj = $.parseJSON(result);
+          if(obj.exito == 0){
+            $("#msg").html("ERROR: No se pudo registarr usuario");
+          }else if(obj.exito == 1){
+            $("#msg").html("ERROR: El usuario "+$("#cusername").val()+" ya existe");
+          }else if(obj.exito > 1){
+            $("#msg").html("Se registro usuario " + obj.exito);
 
-return false;
-}
+            }
+         
+
+          $.mobile.changePage("#dialog", {
+            role: "dialog"  // show #page2 as dialog
+          });
+
+        }
+      });
+
+      return false;
+    }
 
     /***************** funciones loading ***********************/
     function hideLoading() {
 
-$.mobile.loading('hide', {
-  text: 'Cargando',
-  textVisible: true,
-  theme: 'z',
-  html: ""
-});
-}
-function showLoading() {
+      $.mobile.loading('hide', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
+    function showLoading() {
 
-$.mobile.loading('show', {
-  text: 'Cargando',
-  textVisible: true,
-  theme: 'z',
-  html: ""
-});
-}
+      $.mobile.loading('show', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
 /***********************************************************/
 
 
-function cargaClientes(){
-  $("#crfc").empty();
+function cargaRoles(){
+  $("#crol").empty();
   showLoading();
         $.ajax({
-          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaCliente.php",
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaRoles.php",
               method: "get",
               headers : {
                   'Cache-Control': 'no-transform'
@@ -139,11 +155,10 @@ function cargaClientes(){
               success: function (result) {
                
                 var data = $.parseJSON(result);
-                clientesArray=data;
 
                 $.each(data, function(i, obj) {
                  // console.info("obj:",obj);
-                  $("#crfc").append('<option value='+obj.rfc+'>'+obj.rfc+'</option>');
+                  $("#crol").append('<option value='+obj.idC01rol+'>'+obj.descripcion+'</option>');
                 });
 
               },complete:function(){
@@ -152,29 +167,12 @@ function cargaClientes(){
             });
  }
 
- $("#crfc").change(function(){
-   
-  $.each(clientesArray, function(i, obj) {
-   
-                  if($("#crfc").val() == obj.rfc){
-                    
-                    $("#ctelefono").val(obj.telefono);
-                    $("#cdireccion").val(obj.direccion);
-                    return true;
-                  }
-                  
-                });
 
- });
-
- $( document ).ready(function() {
-    
-    cargaClientes();
+$( document ).ready(function() {
+    cargaRoles();
   });
 
-var clientesArray;
-
-</script>
+  </script>
 </body>
 
 
