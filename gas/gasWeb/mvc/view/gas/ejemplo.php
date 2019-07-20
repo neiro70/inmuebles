@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $ctelefono=trim($_POST['ctelefono']);
     $cdireccion=trim($_POST['cdireccion']);
     $cobeservaciones=trim($_POST['cobeservaciones']);
-    $idUsuario=trim()$_POST['idUsuario'];
+    $idUsuario=trim($_POST['idUsuario']);
     $d1 = date('Y-m-d',(strtotime('2018-01-01')));
 
     $db = new MySQL();   
