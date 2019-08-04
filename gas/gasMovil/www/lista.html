@@ -46,14 +46,12 @@
     </div>
     <div class="ui-content">
 
-      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
-      </ul>
-      <br>
       <label for="cdireccion">RFC:</label>
-      <input type="text" data-clear-btn="true" name="xcrfc" id="xcrfc" value="MAAJ830101U41">
+      <select name="xcrfc" id="xcrfc"></select>
 
       <input type="button" data-icon="search" value="Buscar" id="buscar" onclick="buscar()">
-
+      <ul data-role="listview" data-inset="true" id="lista"  data-filter="true" data-filter-placeholder="Buscar por..." >
+      </ul>
 
     </div>
 
@@ -79,7 +77,7 @@
           var $ul = $("#lista");
           $ul.empty();
           $.each(rows, function (i, obj) {
-            console.info("result:",obj);
+            //console.info("result:",obj);
             var tipopago = obj.idtipopago == "1" ? "EFECTIVO" : "TARJETA";
             var content = '<li data-icon="false"><a href="#"><img src="img/gas.svg" style="padding-top:10px;padding-left:10px;" width="65px"/>' + '(' + obj.idsuministro + ') <br>' + tipopago + ' <br>' + obj.fecha +  ' <br> Importe: $' + number_format(obj.importe,2) +'</a></li>';
             $ul.append(content);
@@ -136,6 +134,36 @@
       });
     }
     /***********************************************************/
+
+
+function cargaClientes(){
+  $("#xcrfc").empty();
+  showLoading();
+        $.ajax({
+          url: "http://dratl.com.mx/inmuebles/gas/gasWeb/mvc/view/gas/consultaCliente.php",
+              method: "get",
+              headers : {
+                  'Cache-Control': 'no-transform'
+              },
+              success: function (result) {
+               
+                var data = $.parseJSON(result);
+
+                $.each(data, function(i, obj) {
+                 // console.info("obj:",obj);
+                  $("#xcrfc").append('<option value='+obj.rfc+'>'+obj.rfc+'</option>');
+                });
+
+              },complete:function(){
+                hideLoading();
+              }
+            });
+ }
+
+ $( document ).ready(function() {
+    
+    cargaClientes();
+  });
   </script>
 </body>
 </html>

@@ -78,7 +78,7 @@
           var $ul = $("#lista");
           $ul.empty();
           $.each(rows, function (i, obj) {
-            console.info("result:",obj);
+           // console.info("result:",obj);
             //var tipopago = obj.idtipopago == "1" ? "EFECTIVO" : "TARJETA";
             var content = '<li data-icon="false"><a href="#"><img src="img/calendar.svg" style="padding-top:10px;padding-left:10px;" width="65px"/>' + obj.fecha+'<br>TEL: '+ obj.telefono+'<br>Diección: '+ obj.direccion+'</a></li>';
             $ul.append(content);
