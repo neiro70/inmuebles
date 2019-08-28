@@ -60,20 +60,41 @@
         <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="">
         <label for="ctelefono"><img src="img/telefono.svg" width="36" height="36" style="margin-bottom: -10px;" > Telefono</label>
         <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
-        <label for="cimporte">Importe:</label>
-        <input type="number" data-clear-btn="true" name="cimporte" id="cimporte" value="">
-
+       
         <label for="clitros"><img src="img/tacometro3.png" width="36" height="36" style="margin-bottom: -10px;" > Litros</label>
         <input type="range" name="clitros" id="clitros" value="60" min="0" max="1000" data-highlight="true">
-
-        <label for="cpesos"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Pesos</label>
-        <input type="number" data-clear-btn="true" name="cpesos" id="cpesos" value="">
+		<label for="cimporte">Importe:</label>
+        <input type="number" data-clear-btn="true" name="cimporte" id="cimporte" value="">
         <label for="cmonto"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Monto</label>
         <input type="number" data-clear-btn="true" name="cmonto" id="cmonto" value="">
         <label for="cpago"><img src="img/tarjeta.svg" width="36" height="36" style="margin-bottom: -10px;" > Pago</label>
-        <select name="cpago" id="cpago"> 
+        
+		<select name="cpago" id="cpago">
+          <option value="1">Efectivo</option>
+		  <option value="2">Crédito</option>
+		  <option value="3">Combinado</option>
+          <option value="4">TPV Santander</option>
+          <option value="5">TPV Amex </option>
+          <option value="6">BBVA</option>
+          <option value="7">BNMX</option>
+          <option value="8">Gasomatic</option>
+	       		  
         </select>
-        <label for="cfecha"><img src="img/agenda.svg" width="36" height="36" style="margin-bottom: -10px;" >  Proximo Suministro</label>
+		<div id="divMontoCombinado">
+		<label for="cmontoefectivo">Monto en Efectivo:</label>
+        <input type="number" data-clear-btn="true" name="cmontoefectivo" id="cmontoefectivo" value="">
+		<label for="cmontotarjeta">Monto con Tarjeta:</label>
+        <input type="number" data-clear-btn="true" name="cmontotarjeta" id="cmontotarjeta" value="">
+		<label for="cmontocredito">Monto en Crédito:</label>
+        <input type="number" data-clear-btn="true" name="cmontocredito" id="cmontocredito" value="">
+		</div>
+		
+		<div id="divfechaPago">
+        <label class="hidden" for="cfechapago"> Fecha de Pago:</label>
+        <input type="date" name="cfechapago" id="cfechapago" value="">
+		</div>
+		
+        <label for="cfecha"> Proximo Suministro:</label>
         <input type="date" name="cfecha" id="cfecha" value="">
         <label for="cobeservaciones"><img src="img/lapiz.svg" width="36" height="36" style="margin-bottom: -10px;" > Observaciones</label>
         <textarea name="cobeservaciones" id="cobeservaciones">
@@ -117,10 +138,83 @@
       Se han guardado los datos
     </div>
   </div>
-
+  
   <script type="text/javascript">
+  
+	var ajustarLitros=true
+	var ajustarPesos=true
+    $("#cambiaVentana").click(function () {
+      $("#linkBuscar").attr("href", "lista.html?r=" + Math.random());
+    });
+	
+
+    $(document).ready(function () {
+      console.log("ready!");
+     $("#idUsuario").val(localStorage.getItem('idUsuario'));
+     cargaFormaPago();
+      $("#linkBuscar").attr("href", "lista.html?r=" + Math.random());
+	  $("#divMontoCombinado").hide("slow");
+	  $("#divfechaPago").hide("slow");
+	  
+	  $("#cpago").change(function() {
+	  
+		if ($("#cpago").val() === '3'){
+		
+		 $("#divMontoCombinado").show("slow");
+		}else {
+			$("#divMontoCombinado").hide("slow");
+		}
+		
+		if ($("#cpago").val() === '2'){
+		 $("#divfechaPago").show("slow");
+		}else {
+			$("#divfechaPago").hide("slow");
+		}
+		
+		});
+		
+		
+     $("#clitros").change(function() {
+			var litros=$("#clitros").val();
+			console.log("litros " + litros) 
+			var suma = litros * 8;
+			if(ajustarPesos === true){
+				$("#cimporte").val(suma);
+				$("#cmonto").val(suma);
+				ajustarLitros = false
+			}else{
+				ajustarPesos = true
+			}
+			
+		   
+		});
+		
+		$("#cimporte").change(function() {
+			var pesos=$("#cimporte").val();
+			console.log("pesos " + pesos);
+			var litros = pesos / 8;
+			if(ajustarLitros === true){
+				$("#clitros").val(litros);
+				$("#cmonto").val(pesos);
+				ajustarPesos = false;
+			}else{
+				ajustarLitros = true;
+			}
+		});
+
+    $("#sicronizar").click(function () {
+      var forma = $("#forma").serialize();
+      //console.info("forma:", forma);
+      $("#msg").html(forma);
 
 
+      $.mobile.changePage("#dialog", {
+        role: "dialog"  // show #page2 as dialog
+      })
+
+    });
+	
+	 });
     function guardar() {
      
     console.info("forma:", $("#forma").serialize());
@@ -197,12 +291,6 @@ function cargaFormaPago(){
               }
             });
  }
-
-
-$( document ).ready(function() {
-     $("#idUsuario").val(localStorage.getItem('idUsuario'));
-     cargaFormaPago();
-  });
 
   </script>
 </body>
