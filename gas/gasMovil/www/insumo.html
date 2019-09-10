@@ -60,7 +60,8 @@
         <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="">
         <label for="ctelefono"><img src="img/telefono.svg" width="36" height="36" style="margin-bottom: -10px;" > Telefono</label>
         <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
-       
+       <label for="cprecioxlitro"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Precio por litro</label>
+        <input type="number" data-clear-btn="true" name="cprecioxlitro" id="cprecioxlitro" value="">
         <label for="clitros"><img src="img/tacometro3.png" width="36" height="36" style="margin-bottom: -10px;" > Litros</label>
         <input type="range" name="clitros" id="clitros" value="60" min="0" max="1000" data-highlight="true">
 		<label for="cimporte">Importe:</label>
@@ -176,8 +177,12 @@
 		
      $("#clitros").change(function() {
 			var litros=$("#clitros").val();
+			var precioxlitro=$("#cprecioxlitro").val(); 
+			if ( isNaN( precioxlitro )){
+				precioxlitro=0;
+			}
 			console.log("litros " + litros) 
-			var suma = litros * 8;
+			var suma = litros * precioxlitro;
 			if(ajustarPesos === true){
 				$("#cimporte").val(suma);
 				$("#cmonto").val(suma);
@@ -191,8 +196,12 @@
 		
 		$("#cimporte").change(function() {
 			var pesos=$("#cimporte").val();
+			var precioxlitro=$("#cprecioxlitro").val(); 
+			if ( isNaN( precioxlitro )){
+				precioxlitro=0;
+			}
 			console.log("pesos " + pesos);
-			var litros = pesos / 8;
+			var litros = pesos / precioxlitro;
 			if(ajustarLitros === true){
 				$("#clitros").val(litros);
 				$("#cmonto").val(pesos);
