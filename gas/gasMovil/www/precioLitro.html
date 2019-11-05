@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="themes/gas-rojo.min.css">
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+  <div data-role="page" id="pageone">
+    
+    <div data-role="header">
+	</div>
+
+    <div data-role="main" class="ui-content">
+
+      <form id="forma">
+
+		<label for="cprecioPorLitro">Precio por litro:</label>
+        <input type="tel" data-clear-btn="true" name="cprecioPorLitro" id="cprecioPorLitro" value="">
+		<a  id="cambiarPagina" href="javascript:window.location.href = 'insumo.html'" />
+      </form>
+      <br>
+      <a href="#" onclick="guardar()" 
+              class="ui-btn  ui-shadow ui-corner-all" id="guardar"
+              name="guardar">
+              <img src="img/save.png" width="26" height="26" >
+                <br>
+              Aceptar</a>
+	   <a href="javascript:window.location.href = 'dashboard.html'" 
+              class="ui-btn  ui-shadow ui-corner-all" id="guardar"
+              name="guardar">
+              <img src="img/save.png" width="26" height="26" >
+                <br>
+              Cancelar</a>
+      <!-- >div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="sicronizar()"
+              class="ui-btn ui-icon-recycle ui-btn-icon-left ui-shadow ui-corner-all" id="sicronizar"
+              name="sicronizar">Sicronizar</a></div>
+        </div>
+        <div class="ui-block-b">
+          <div class="ui-bar ui-bar-a" style="height:60px"><a href="#" onclick="guardar()"
+              class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow ui-corner-all" id="guardar"
+              name="guardar">Guardar</a></div>
+        </div>
+
+      </div-->
+
+    </div>
+
+    <div data-role="footer">
+      <h1>OperaGAS</h1>
+    </div>
+  </div>
+
+  <!-- dialog #page2  -->
+  <div id="dialog" data-role="page">
+    <div data-role="header">
+      <h1>Transacci&oacute;n</h1>
+    </div>
+    <div data-role="content" id="msg">
+      Se han guardado los datos
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+
+
+    $(document).ready(function () {
+      console.log("ready!");
+     $("#idUsuario").val(localStorage.getItem('idUsuario'));
+	 });
+	 
+    function guardar() {
+		localStorage.setItem('precioxLitro', 0);
+		var precioxLitro=$("#cprecioPorLitro").val();
+		localStorage.setItem('precioxLitro',precioxLitro);
+		if (precioxLitro && precioxLitro > 0){
+		   window.location.href ='insumo.html';
+			
+		}
+    }
+    /***************** funciones loading ***********************/
+    function hideLoading() {
+
+      $.mobile.loading('hide', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
+    function showLoading() {
+
+      $.mobile.loading('show', {
+        text: 'Cargando',
+        textVisible: true,
+        theme: 'z',
+        html: ""
+      });
+    }
+/***********************************************************/
+  </script>
+</body>
+
+
+</html>

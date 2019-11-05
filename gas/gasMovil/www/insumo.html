@@ -59,15 +59,15 @@
         <label for="crfc">RFC:</label>
         <input type="text" data-clear-btn="true" name="crfc" id="crfc" value="">
         <label for="ctelefono"><img src="img/telefono.svg" width="36" height="36" style="margin-bottom: -10px;" > Telefono</label>
-        <input type="number" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
+        <input type="tel" data-clear-btn="true" name="ctelefono" id="ctelefono" value="">
        <label for="cprecioxlitro"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Precio por litro</label>
-        <input type="number" data-clear-btn="true" name="cprecioxlitro" id="cprecioxlitro" value="">
+        <input type="tel" data-clear-btn="true" name="cprecioxlitro" id="cprecioxlitro" value="" maxlength="10">
         <label for="clitros"><img src="img/tacometro3.png" width="36" height="36" style="margin-bottom: -10px;" > Litros</label>
         <input type="range" name="clitros" id="clitros" value="60" min="0" max="1000" data-highlight="true">
 		<label for="cimporte">Importe:</label>
         <input type="number" data-clear-btn="true" name="cimporte" id="cimporte" value="">
         <label for="cmonto"><img src="img/dinero.svg" width="36" height="36" style="margin-bottom: -10px;" > Monto</label>
-        <input type="number" data-clear-btn="true" name="cmonto" id="cmonto" value="">
+        <input type="tel" data-clear-btn="true" name="cmonto" id="cmonto" value="">
         <label for="cpago"><img src="img/tarjeta.svg" width="36" height="36" style="margin-bottom: -10px;" > Pago</label>
         
 		<select name="cpago" id="cpago">
@@ -141,7 +141,6 @@
   </div>
   
   <script type="text/javascript">
-  
 	var ajustarLitros=true
 	var ajustarPesos=true
     $("#cambiaVentana").click(function () {
@@ -149,8 +148,8 @@
     });
 	
 
-    $(document).ready(function () {
-      console.log("ready!");
+$(document).on('pageinit', function(){
+	  $("#cprecioxlitro").val( localStorage.getItem('precioxLitro') );
      $("#idUsuario").val(localStorage.getItem('idUsuario'));
      cargaFormaPago();
       $("#linkBuscar").attr("href", "lista.html?r=" + Math.random());
@@ -236,11 +235,24 @@
           //console.info("result:",result);
           var obj = $.parseJSON(result);
           $("#msg").html("Se registro suministro " + obj.exito);
-
+			$("#cdireccion").val("");
+			$("#cnombre").val("");
+			$("#capaterno").val("");
+			$("#camaterno").val("");
+			$("#crfc").val("");
+			$("#ctelefono").val("");
+			$("#clitros").val("0");
+			$("#cimporte").val("");
+			$("#cmonto").val("");
+			$("#cpago").val("1");
+			$("#cfecha").val("");
+			$("#cobeservaciones").val("");
+			 $("#divMontoCombinado").hide("slow");
+			$("#divfechaPago").hide("slow");
           $.mobile.changePage("#dialog", {
             role: "dialog"  // show #page2 as dialog
           });
-
+		
         }
       });
 
